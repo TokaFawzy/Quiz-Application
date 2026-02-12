@@ -78,6 +78,8 @@ function startQuiz(){
     landing.classList.remove("active");
     quiz.classList.add("active");
     currentQuestionIndex=0;
+    score=0;
+    quizQuestions.forEach(q => q.userSelectedAnswer = undefined);
     questionCount.innerHTML=quizQuestions.length;
     maxScore.innerHTML=quizQuestions.length;
     scoreCount.innerHTML=0;
@@ -103,7 +105,17 @@ function showQuestions(){
         if (answer.correct) {
             btn.dataset.correct = answer.correct;
         }
-        btn.addEventListener("click", selectAnswer);
+        if (curQuestion.userSelectedAnswer !== undefined) {
+            btn.disabled = true;
+        if (answer.correct) {
+            btn.classList.add("correct");
+        }
+        if (answer.text === curQuestion.userSelectedAnswer && !answer.correct) {
+            btn.classList.add("wrong");
+        }
+        } else {
+            btn.addEventListener("click", selectAnswer);
+        }
         answersContainer.appendChild(btn);
     })
     updateProgress();
@@ -111,7 +123,10 @@ function showQuestions(){
 function selectAnswer(e){
     const selected=e.target;
     const correct=selected.dataset.correct === "true";
+    let curQuestion=quizQuestions[currentQuestionIndex];
+    curQuestion.userSelectedAnswer = selected.innerText;
     if(correct){
+        
         score++;
         scoreCount.innerHTML=score;
         selected.classList.add("correct")
