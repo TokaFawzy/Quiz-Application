@@ -51,7 +51,7 @@ button:hover{
 @media (max-width: 420px){
     .landing{
         margin: 30px auto;
-        width: 200px;
+        width: 250px;
     }
 }
 .main-text{
@@ -180,4 +180,5 @@ button:hover{
     text-align: center;
     font-weight: bold;
     margin-top: 10px;
+
 }
