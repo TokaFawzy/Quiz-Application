@@ -43,7 +43,7 @@ button:hover{
         width: 250px;
     }
     .screen{
-    width: 90%;
+    width: 100%;
     max-width: 500px;
     }
 
@@ -182,3 +182,4 @@ button:hover{
     margin-top: 10px;
 
 }
+
